@@ -29,3 +29,7 @@ Route::group(['prefix'=>'product'],function (){
 });
 
 Route::get('products', 'api\ProductController@index');
+
+Route::group(['prefix'=>'order'],function (){
+    Route::post('add', 'api\OrderController@store');
+});
