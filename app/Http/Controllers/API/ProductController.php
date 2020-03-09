@@ -57,7 +57,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        try {
+
+            $model =  Product::find($request->input('id'));
+            $model->fill($request->input());
+            $model->save();
+            return json_encode($model->getAttributes());
+        } catch (\Exception $e) {
+            // do task when error
+            return json_encode($e->getMessage());   // insert query
+        }
     }
 
     /**

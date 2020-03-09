@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix'=>'product'],function (){
     Route::post('add', 'api\ProductController@store');
+    Route::patch('edit', 'api\ProductController@update');
 });
 
 Route::get('products', 'api\ProductController@index');
