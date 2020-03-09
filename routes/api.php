@@ -21,7 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::apiResource('product', 'api\ProductController');
 
 
+
 Route::group(['prefix'=>'product'],function (){
-    Route::post('store', 'api\ProductController@store');
+    Route::post('add', 'api\ProductController@store');
 });
 
+Route::get('products', 'api\ProductController@index');
