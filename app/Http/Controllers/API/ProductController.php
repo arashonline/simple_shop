@@ -58,7 +58,6 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         try {
-
             $model =  Product::find($request->input('id'));
             $model->fill($request->input());
             $model->save();
@@ -72,11 +71,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param \Illuminate\Http\Request $request
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
-        //
+       return json_encode( Product::destroy($request->input('id')));
     }
 }
