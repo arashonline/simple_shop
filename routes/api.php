@@ -33,3 +33,4 @@ Route::get('products', 'api\ProductController@index');
 Route::group(['prefix'=>'order'],function (){
     Route::post('add', 'api\OrderController@store');
 });
+Route::post('orders', 'api\OrderController@index');

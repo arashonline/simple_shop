@@ -12,11 +12,13 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $orders = Order::with('orderItems')->where(['user_id'=>$request->input('user_id')])->get();
+        return json_encode($orders);
     }
 
     /**
