@@ -21,8 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::apiResource('product', 'api\ProductController');
 
 
-
-Route::group(['prefix'=>'product'],function (){
+Route::group(['prefix' => 'product'], function () {
     Route::post('add', 'api\ProductController@store');
     Route::patch('edit', 'api\ProductController@update');
     Route::delete('delete', 'api\ProductController@destroy');
@@ -30,7 +29,24 @@ Route::group(['prefix'=>'product'],function (){
 
 Route::get('products', 'api\ProductController@index');
 
-Route::group(['prefix'=>'order'],function (){
+Route::group(['prefix' => 'order'], function () {
     Route::post('add', 'api\OrderController@store');
 });
 Route::post('orders', 'api\OrderController@index');
+
+
+
+
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'api\AuthController@login');
+    Route::post('signup', 'api\AuthController@signup');
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'api\AuthController@logout');
+        Route::get('user', 'api\AuthController@user');
+    });
+});
